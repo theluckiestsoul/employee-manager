@@ -1,0 +1,190 @@
+basePath: /api/v1
+definitions:
+  handlers.EmployeeParams:
+    properties:
+      name:
+        type: string
+      position:
+        type: string
+      salary:
+        type: number
+    type: object
+  handlers.EmployeeResponse:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      position:
+        type: string
+      salary:
+        type: integer
+    type: object
+  handlers.ListEmployeesResponse:
+    properties:
+      employees:
+        items:
+          $ref: '#/definitions/handlers.EmployeeResponse'
+        type: array
+      total:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: kiranmohanty.remote@gmail.com
+    name: Kiran Kumar Mohanty
+  description: This is a server for the Employee Manager API.
+  termsOfService: http://swagger.io/terms/
+  title: Employee Manager API
+  version: "1.0"
+paths:
+  /employees:
+    get:
+      consumes:
+      - application/json
+      description: List employees
+      parameters:
+      - description: Page number
+        in: query
+        name: page
+        type: integer
+      - description: Number of items per page
+        in: query
+        name: per_page
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.ListEmployeesResponse'
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: List employees
+      tags:
+      - employees
+    post:
+      consumes:
+      - application/json
+      description: Create a new employee
+      parameters:
+      - description: Employee body
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.EmployeeParams'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.EmployeeResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+        "500":
+          description: Internal server error
+          schema:
+            type: string
+      summary: Create a new employee
+      tags:
+      - employees
+  /employees/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an employee by ID
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: Employee deleted
+          schema:
+            type: string
+        "400":
+          description: Invalid employee ID
+          schema:
+            type: string
+        "404":
+          description: Employee not found
+          schema:
+            type: string
+      summary: Delete an employee by ID
+      tags:
+      - employees
+    get:
+      consumes:
+      - application/json
+      description: Get an employee by ID
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.EmployeeResponse'
+        "400":
+          description: Invalid employee ID
+          schema:
+            type: string
+        "404":
+          description: Employee not found
+          schema:
+            type: string
+      summary: Get an employee by ID
+      tags:
+      - employees
+    put:
+      consumes:
+      - application/json
+      description: Update an employee
+      parameters:
+      - description: Employee ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Employee object that needs to be updated
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.EmployeeParams'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.EmployeeResponse'
+        "400":
+          description: Invalid request payload
+          schema:
+            type: string
+        "404":
+          description: Employee not found
+          schema:
+            type: string
+      summary: Update an employee
+      tags:
+      - employees
+swagger: "2.0"

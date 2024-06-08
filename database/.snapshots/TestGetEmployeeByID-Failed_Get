@@ -1,0 +1,9 @@
+(struct { Employee database.Employee; Error error }) {
+  Employee: (database.Employee) {
+    ID: (int) 0,
+    Name: (string) "",
+    Position: (string) "",
+    Salary: (float64) 0
+  },
+  Error: (*errors.errorString)(failed to get)
+}

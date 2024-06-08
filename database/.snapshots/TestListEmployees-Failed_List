@@ -1,0 +1,5 @@
+(struct { Employees []database.Employee; Total int; Error error }) {
+  Employees: ([]database.Employee) <nil>,
+  Total: (int) 0,
+  Error: (*errors.errorString)(failed to list)
+}

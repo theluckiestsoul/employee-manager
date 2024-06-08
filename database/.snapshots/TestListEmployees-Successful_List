@@ -1,0 +1,12 @@
+(struct { Employees []database.Employee; Total int; Error error }) {
+  Employees: ([]database.Employee) (len=1) {
+    (database.Employee) {
+      ID: (int) 1,
+      Name: (string) (len=8) "John Doe",
+      Position: (string) (len=8) "Engineer",
+      Salary: (float64) 50000
+    }
+  },
+  Total: (int) 1,
+  Error: (error) <nil>
+}

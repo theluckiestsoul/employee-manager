@@ -1,0 +1,7 @@
+HTTP/1.1 201 Created
+Connection: close
+Content-Type: application/json
+Location: /employees/1
+
+{"id":1,"name":"John Doe","position":"Engineer","salary":5000}
+
